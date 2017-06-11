@@ -109,3 +109,13 @@ and one.c passes it!
 it inserts a bunch of key-value pairs into my hashtable and python's dict, and
 then asserts that they both contain the same values.
 and they do -- at least hypothesis hasn't found a falsifying example yet.
+
+                                     * * *
+
+this is public now.
+i'm setting up travis to test the code.
+they seem to expect every project to only use one programming language. :/
+i'm reading:
+
+- https://github.com/travis-ci/travis-ci/issues/4090
+- https://docs.travis-ci.com/user/languages/c/
