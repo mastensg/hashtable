@@ -119,3 +119,41 @@ i'm reading:
 
 - https://github.com/travis-ci/travis-ci/issues/4090
 - https://docs.travis-ci.com/user/languages/c/
+
+travis won't install clang:
+
+    $ export DEBIAN_FRONTEND=noninteractive
+    $ sudo -E apt-get -yq update &>> ~/apt-get-update.log
+    $ sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install clang-4.0
+    Reading package lists...
+    Building dependency tree...
+    Reading state information...
+    Some packages could not be installed. This may mean that you have
+    requested an impossible situation or if you are using the unstable
+    distribution that some required packages have not yet been created
+    or been moved out of Incoming.
+    The following information may help to resolve the situation:
+    The following packages have unmet dependencies:
+     clang-4.0 : Depends: libclang1-4.0 (= 1:4.0~svn304242-1~exp1) but it is not going to be installed
+		 Depends: libllvm4.0 (>= 1:4.0~) but it is not going to be installed
+		 Depends: libstdc++6 (>= 4.8.1) but 4.6.3-1ubuntu5 is to be installed
+		 Depends: libstdc++-4.8-dev but it is not installable
+		 Depends: libgcc-4.8-dev but it is not installable
+		 Depends: libobjc-4.8-dev but it is not installable
+		 Depends: libclang-common-4.0-dev (= 1:4.0~svn304242-1~exp1) but it is not going to be installed
+    E: Unable to correct problems, you have held broken packages.
+    apt-get.diagnostics
+    apt-get install failed
+    The command "sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install clang-4.0" failed and exited with 100 during .
+    Your build has been stopped.
+
+hmm, maybe that's what that "works on Trusty" in
+https://docs.travis-ci.com/user/languages/c/ was about.
+according to that, clang-3.8 will "work on trusty", but clang-3.9 will not.
+that matches what i'm getting.
+i will get trusty, then, somehow.
+
+https://docs.travis-ci.com/user/trusty-ci-environment/ says to add:
+
+    dist: trusty
+    sudo: required
