@@ -1,0 +1,111 @@
+
+--------------------------------  2017-06-08  --------------------------------
+
+do it!
+
+singly-linked lists for buckets
+uint64_t key -> uint64_t value
+
+1. define interface, write hashtable.h
+2. write client code, sequence of asserts in main.c
+3. keep implementing a hashtable in one.c until all the tests pass
+
+build environment:
+    clang-5.0 -std=c11 \
+        -Weverything -fcolor-diagnostics \
+        -Wno-switch-enum \
+        -fsanitize=address,integer,undefined \
+        -march=native -O0 -g -o \
+        test_one main.c one.c
+compile and run every time one of the files are saved
+
+--------------------------------  2017-06-09  --------------------------------
+
+i read about linked allocation in knuth's taocp vol 1.
+i had a revelation about memory allocation.
+man, what a good book.
+
+--------------------------------  2017-06-10  --------------------------------
+
+keep doing it.
+
+i think i can assign and lookup now.
+
+i'm using alexei alexandrescu's for(;;) method.
+
+i think i implemented deletion just now.
+the tests seem to all pass, but:
+
+    ==1133==ERROR: LeakSanitizer: detected memory leaks
+
+    Direct leak of 24 byte(s) in 1 object(s) allocated from:
+        #0 0x4d3700  (/home/mastensg/var/opt/2017-06-07_hashtable/test_one+0x4d3700)
+        #1 0x50b741  (/home/mastensg/var/opt/2017-06-07_hashtable/test_one+0x50b741)
+        #2 0x50affa  (/home/mastensg/var/opt/2017-06-07_hashtable/test_one+0x50affa)
+        #3 0x7fc2106142b0  (/lib/x86_64-linux-gnu/libc.so.6+0x202b0)
+
+    SUMMARY: AddressSanitizer: 24 byte(s) leaked in 1 allocation(s).
+
+ah, my ht_free only frees the array of buckets, but not the list elements.
+thanks, leaksanitizer! :D
+
+i'm reminded of a recent file descriptor leak in synq's thumbnail service.
+a go program didn't close its descriptors, and would crash.
+i wonder if there's a file descriptor leak detector...
+there's this for java: file-leak-detector.kohsuke.org/
+and as i just found, there's valgrind's --track-fds.
+there may be a whole bunch of correctness checkers out there that i don't know of.
+i will read the clang, gcc and valgrind manuals one day to discover them!
+
+back to freeing memory.
+1. for each bucket, free all the elements
+2. free the array of buckets
+
+for each list element, save its pointer to the next element, and then free the element
+
+now there's a heap-use-after-free but clang's AddressSanitizer doesn't give line numbers.
+i'll switch to gcc.
+ah, i think i see now.
+the **p style iteration doesn't apply/isn't needed when freeing.
+
+i think it's good! :D
+if only i had these sanitizers when starting out with c...
+
+next up, property-based testing with hypothesis.
+
+--------------------------------  2017-06-11  --------------------------------
+
+idea (had when reading https://en.wikipedia.org/wiki/Hopscotch_hashing):
+with a scheme that only let elements with the same hash value share a location,
+the elements in that area don't need to store the whole key -- only the
+non-hash part of the key.
+for example, the hash can be the least significant bits of an integer,
+and the partial key stored in the table can be the most significant bits.
+
+                                     * * *
+
+now, how about that hypothesis...
+
+1. wrap one.c with cffi
+2. implement a hashtable.h interface around python's dict
+3. make a hypothesis strategy
+
+i started by adapting my "real" cffi example from yesterday.
+i don't want to have cffi compile anything, though, i think.
+maybe i want the out-of-line, abi level:
+https://cffi.readthedocs.io/en/latest/overview.html#out-of-line-abi-level
+
+i'm going through the list of methods in help(dict), and filling in my own
+Hashtable object.
+i'm making my c hashtable conform to python's dict's interface, instead of the
+other way around.
+it's kinda fun :)
+i have keep_doing_it.sh running in a window on the side, of course.
+this is the nice and easy reward after having done the tricky linked list stuff
+in c! :p
+
+now there's a hypothesis test suite! :D
+and one.c passes it!
+it inserts a bunch of key-value pairs into my hashtable and python's dict, and
+then asserts that they both contain the same values.
+and they do -- at least hypothesis hasn't found a falsifying example yet.

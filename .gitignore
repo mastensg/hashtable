@@ -1,0 +1,4 @@
+*.so
+/_hashtable.py
+/test_one
+__pycache__
