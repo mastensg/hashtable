@@ -204,3 +204,12 @@ https://docs.travis-ci.com/user/languages/python/#Travis-CI-Uses-Isolated-virtua
 says to only use pip.
 what was the problem with pytest from pip, again?
 i will find out.
+
+https://docs.travis-ci.com/user/languages/python/#Pre-installed-packages
+
+    Travis CI installs the following packages by default in each virtualenv:
+    - pytest
+
+did i not need to install it at all?
+/home/travis/virtualenv/python3.5.2/bin/pytest
+i will run "pytest check.py" if check.sh is being run on travis.
