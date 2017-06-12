@@ -192,3 +192,5 @@ E: Unable to locate package python3-hypothesis
 i guess one dependency will have to be satisfied by pip...
 
 start a new travis batch.
+still: ImportError: No module named 'cffi'
+i will make pip install cffi as well.
