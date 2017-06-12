@@ -108,7 +108,6 @@ addons:
   apt:
     packages:
     - python3-cffi
-    - python3-hypothesis
     - python3-pytest
 before_install:
   - eval "${MATRIX_EVAL}"

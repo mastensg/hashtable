@@ -178,3 +178,15 @@ i think exporting did the trick.
 
 now for the next problem: ImportError: No module named 'cffi'
 i will add a requirements.txt with the dependencies.
+
+i added the dependencies, but pytest wouldn't run.
+i will install system packages instead of pip packages.
+https://docs.travis-ci.com/user/installing-dependencies/#Installing-Packages-on-Container-Based-Infrastructure
+
+i will try "sudo: false".
+all my packages may be on the whitelist:
+https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-trusty
+...or not. none of the recent clang and gcc releases are there.
+
+E: Unable to locate package python3-hypothesis
+i guess one dependency will have to be satisfied by pip...
