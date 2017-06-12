@@ -213,3 +213,6 @@ https://docs.travis-ci.com/user/languages/python/#Pre-installed-packages
 did i not need to install it at all?
 /home/travis/virtualenv/python3.5.2/bin/pytest
 i will run "pytest check.py" if check.sh is being run on travis.
+
+green checkmarks all over! :D
+now i will remove the mess of log statements from travis.

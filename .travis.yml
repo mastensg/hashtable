@@ -106,9 +106,6 @@ matrix:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
 before_install:
   - eval "${MATRIX_EVAL}"
-  - echo MATRIX_EVAL "${MATRIX_EVAL}"
-  - echo CC "${CC}"
-  - echo CXX "${CXX}"
 language: python
 python:
   - "3.4"
@@ -118,9 +115,6 @@ compiler:
   - clang
   - gcc
 script:
-  - echo MATRIX_EVAL "${MATRIX_EVAL}"
-  - echo CC "${CC}"
-  - echo CXX "${CXX}"
   - export CC CXX
   - ./build.sh
   - ./check.sh
