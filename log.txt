@@ -157,3 +157,18 @@ https://docs.travis-ci.com/user/trusty-ci-environment/ says to add:
 
     dist: trusty
     sudo: required
+
+that made the clang installations work!
+
+i noticed that none of the gcc matrix items were listed on travis-ci.org.
+i suspected that i had gone over my limit, but then i found an extra "include"
+inside the "matrix" object in .travis.yml.
+now i suspect that the last "include" overrode the first one.
+i removed the accidental one.
+
+gcc-{4.9,5,6} were installed. i'm still waiting on gcc-7...
+they were all installed!
+
+now build.sh fails because CC isn't set.
+
+i have moved eval "${MATRIX_EVAL}" from before_install to script.
