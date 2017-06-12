@@ -169,6 +169,12 @@ i removed the accidental one.
 gcc-{4.9,5,6} were installed. i'm still waiting on gcc-7...
 they were all installed!
 
-now build.sh fails because CC isn't set.
+now build.sh fails because $CC isn't set.
 
 i have moved eval "${MATRIX_EVAL}" from before_install to script.
+
+can build.sh not see $CC because it's not exported?
+i think exporting did the trick.
+
+now for the next problem: ImportError: No module named 'cffi'
+i will add a requirements.txt with the dependencies.
