@@ -1,5 +1,6 @@
 *.so
 *.swp
+/.hypothesis
 /_hashtable.py
 /test_one
 __pycache__
