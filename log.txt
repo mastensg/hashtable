@@ -194,3 +194,13 @@ i guess one dependency will have to be satisfied by pip...
 start a new travis batch.
 still: ImportError: No module named 'cffi'
 i will make pip install cffi as well.
+
+/usr/bin/env: py.test-3: No such file or directory
+dpkg -S /usr/bin/pytest-3
+python3-pytest: /usr/bin/pytest-3
+i will change check.py's shebang.
+
+https://docs.travis-ci.com/user/languages/python/#Travis-CI-Uses-Isolated-virtualenvs
+says to only use pip.
+what was the problem with pytest from pip, again?
+i will find out.
