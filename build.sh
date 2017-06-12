@@ -1,5 +1,7 @@
 #!/bin/sh -eu
 
+CC="${CC:-cc}"
+
 >&2 echo "CC = ${CC}"
 case "${CC}" in
     clang-5.0)
