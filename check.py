@@ -1,4 +1,4 @@
-#!/usr/bin/env py.test-3
+#!/usr/bin/env pytest-3
 
 import hypothesis
 import hypothesis.strategies as hs
