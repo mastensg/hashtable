@@ -216,3 +216,6 @@ i will run "pytest check.py" if check.sh is being run on travis.
 
 green checkmarks all over! :D
 now i will remove the mess of log statements from travis.
+
+oh, and i will release this as free software.
+https://www.gnu.org/licenses/gpl-howto.html
