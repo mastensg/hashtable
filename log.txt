@@ -190,3 +190,5 @@ https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-trusty
 
 E: Unable to locate package python3-hypothesis
 i guess one dependency will have to be satisfied by pip...
+
+start a new travis batch.
