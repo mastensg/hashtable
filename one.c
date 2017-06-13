@@ -45,8 +45,8 @@ static uint64_t hash(uint64_t x) {
   return x % BUCKETS;
 }
 
-int ht_assign(void *ht, const uint64_t key, uint64_t value) {
-  fprintf(stderr, "\n***\n*** assign %5lu = %5lu\n***\n\n", key, value);
+int ht_insert_or_assign(void *ht, const uint64_t key, uint64_t value) {
+  fprintf(stderr, "\n***\n*** insert_or_assign %5lu = %5lu\n***\n\n", key, value);
   hashtable_t table = (hashtable_t)ht;
   uint64_t h = hash(key);
   fprintf(stderr, "hash(%lu) == %lu\n", key, h);

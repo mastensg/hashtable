@@ -26,9 +26,9 @@ int main() {
   void *ht = ht_new();
   assert(ht);
 
-  assert(HT_OK == ht_assign(ht, 2431, 2048));
-  assert(HT_OK == ht_assign(ht, 2531, 2048));
-  assert(HT_OK == ht_assign(ht, 2431, 9045));
+  assert(HT_OK == ht_insert_or_assign(ht, 2431, 2048));
+  assert(HT_OK == ht_insert_or_assign(ht, 2531, 2048));
+  assert(HT_OK == ht_insert_or_assign(ht, 2431, 9045));
 
   {
     uint64_t v;

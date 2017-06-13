@@ -38,8 +38,8 @@ class Library(object):
     def find(self, ht, value, key):
         return self.lib.ht_find(ht, value, key)
 
-    def assign(self, ht, key, value):
-        return self.lib.ht_assign(ht, key, value)
+    def insert_or_assign(self, ht, key, value):
+        return self.lib.ht_insert_or_assign(ht, key, value)
 
     def delete(self, ht, key):
         return self.lib.ht_delete(ht, key)
@@ -81,7 +81,7 @@ class Hashtable(object):
         return value[0]
 
     def __setitem__(self, key, value):
-        ret = self.lib.assign(self.ht, key, value)
+        ret = self.lib.insert_or_assign(self.ht, key, value)
         assert ret == self.lib.lib.HT_OK
 
 
