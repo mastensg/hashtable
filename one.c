@@ -82,8 +82,8 @@ int ht_assign(void *ht, const uint64_t key, uint64_t value) {
   }
 }
 
-int ht_lookup(void *restrict ht, uint64_t *restrict value, uint64_t key) {
-  fprintf(stderr, "\n***\n*** lookup %5lu\n***\n\n", key);
+int ht_find(void *restrict ht, uint64_t *restrict value, uint64_t key) {
+  fprintf(stderr, "\n***\n*** find %5lu\n***\n\n", key);
   hashtable_t table = (hashtable_t)ht;
   uint64_t h = hash(key);
   struct bucket *b = table + h;

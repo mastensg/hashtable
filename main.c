@@ -32,26 +32,26 @@ int main() {
 
   {
     uint64_t v;
-    assert(HT_OK == ht_lookup(ht, &v, 2431));
+    assert(HT_OK == ht_find(ht, &v, 2431));
     assert(9045 == v);
   }
 
   {
     uint64_t v;
-    assert(HT_OK == ht_lookup(ht, &v, 2531));
+    assert(HT_OK == ht_find(ht, &v, 2531));
     assert(2048 == v);
   }
 
   {
     uint64_t v;
-    assert(HT_NOT_FOUND == ht_lookup(ht, &v, 2631));
+    assert(HT_NOT_FOUND == ht_find(ht, &v, 2631));
   }
 
   assert(HT_OK == ht_delete(ht, 2431));
 
   {
     uint64_t v;
-    assert(HT_NOT_FOUND == ht_lookup(ht, &v, 2431));
+    assert(HT_NOT_FOUND == ht_find(ht, &v, 2431));
   }
 
   ht_free(ht);

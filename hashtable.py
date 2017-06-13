@@ -35,8 +35,8 @@ class Library(object):
     def free(self, ht):
         return self.lib.ht_free(ht)
 
-    def lookup(self, ht, value, key):
-        return self.lib.ht_lookup(ht, value, key)
+    def find(self, ht, value, key):
+        return self.lib.ht_find(ht, value, key)
 
     def assign(self, ht, key, value):
         return self.lib.ht_assign(ht, key, value)
@@ -57,7 +57,7 @@ class Hashtable(object):
     def __contains__(self, key):
         value = _hashtable.ffi.new("uint64_t *")
 
-        ret = self.lib.lookup(self.ht, value, key)
+        ret = self.lib.find(self.ht, value, key)
         assert ret in (self.lib.lib.HT_OK, self.lib.lib.HT_NOT_FOUND)
 
         return ret == self.lib.lib.HT_OK
@@ -72,7 +72,7 @@ class Hashtable(object):
     def __getitem__(self, key):
         value = _hashtable.ffi.new("uint64_t *")
 
-        ret = self.lib.lookup(self.ht, value, key)
+        ret = self.lib.find(self.ht, value, key)
         assert ret in (self.lib.lib.HT_OK, self.lib.lib.HT_NOT_FOUND)
 
         if ret == self.lib.lib.HT_NOT_FOUND:
