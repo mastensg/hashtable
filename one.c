@@ -139,8 +139,8 @@ void ht_free(void *ht) {
   free(ht);
 }
 
-int ht_delete(void *ht, uint64_t key) {
-  fprintf(stderr, "\n***\n*** delete %5lu\n***\n\n", key);
+int ht_erase(void *ht, uint64_t key) {
+  fprintf(stderr, "\n***\n*** erase %5lu\n***\n\n", key);
   hashtable_t table = (hashtable_t)ht;
   uint64_t h = hash(key);
   fprintf(stderr, "hash(%lu) == %lu\n", key, h);

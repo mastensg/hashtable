@@ -47,7 +47,7 @@ int main() {
     assert(HT_NOT_FOUND == ht_find(ht, &v, 2631));
   }
 
-  assert(HT_OK == ht_delete(ht, 2431));
+  assert(HT_OK == ht_erase(ht, 2431));
 
   {
     uint64_t v;

@@ -28,6 +28,6 @@ void *ht_new(void);
 void ht_free(void *ht);
 int ht_find(void *ht, uint64_t *value, uint64_t key);
 int ht_insert_or_assign(void *ht, uint64_t key, uint64_t value);
-int ht_delete(void *ht, uint64_t key);
+int ht_erase(void *ht, uint64_t key);
 
 #endif /* hashtable.h */

@@ -41,8 +41,8 @@ class Library(object):
     def insert_or_assign(self, ht, key, value):
         return self.lib.ht_insert_or_assign(ht, key, value)
 
-    def delete(self, ht, key):
-        return self.lib.ht_delete(ht, key)
+    def erase(self, ht, key):
+        return self.lib.ht_erase(ht, key)
 
 
 class Hashtable(object):
@@ -63,7 +63,7 @@ class Hashtable(object):
         return ret == self.lib.lib.HT_OK
 
     def __delitem__(self, key):
-        ret = self.lib.delete(self.ht, key)
+        ret = self.lib.erase(self.ht, key)
         assert ret in (self.lib.lib.HT_OK, self.lib.lib.HT_NOT_FOUND)
 
         if ret == self.lib.lib.HT_NOT_FOUND:
