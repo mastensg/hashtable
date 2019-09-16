@@ -94,8 +94,17 @@ matrix:
             - clang-4.0
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "RHM9vZKLwrpt5Hfo3Sa1unylnd6Zn1JBX3UfBLBp2YUug3A+V99pL8/wnwRn2AHGPTMs+WVcrctuoYX5OLb6DC/w40lR9/B1nd3tIwMnDjRD2vS5SiDgXTjXglzgXbwFEf9d4S0EFk35fleTb6YUA3TyfdwZfxBoIftQPja8lAPlyn4+Fd86FXy75U38C7vtfS4Nn9Otq8we0VXQusqEmuy9Kfqcs/T7wLhV4hfXHyoID7u5DnmG9Ml6bLtE+qHVtTmstKxCn+tKfepZiUEotWxy6jb9cikKsF1l1Gq1JIk4zRNvHTBQUGaEVPp6mpxQoW68B9noggzlXsFvZuCof7P9Xxtks6xYRE+lNgCJAZpuIrRuGanTOAHrDHeGp9jMjyRpwVipMSeo4V64VIjvMOE6wlz0MXWkHiEGHace3HRUqVAdkX8xkHj3Ts8P46WprblxmocmQRwOOlTGOnn3IhyUQVOucUGe6a2diZRgDph7t5h6jzMvmOI13fl6MUeC8LewEoSHtW3FmVWopt3jF8XfdL2idz9GKeuVmFTvMcXOf3TPs4uQAUb5S84i32cmkwFKW8DuYb2f1u6ae8ldLKuqguiHnCpnx8Oug3Ax81WQtASU9SQJ7mjBv3/aVL6vaiNaeTdr6xdYKOCwSwvpNxvbIaKd333oIFa/9IVdCtE="
+
 before_install:
   - eval "${MATRIX_EVAL}"
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
 language: python
 python:
   - "3.4"
@@ -108,3 +117,12 @@ script:
   - export CC CXX
   - ./build.sh
   - ./check.sh
+
+addons:
+  coverity_scan:
+    project:
+      name: "mastensg/hashtable"
+      description: "<Your project description here>"
+    notification_email: mastensg@mastensg.net
+    build_command: "./build.sh"
+    branch_pattern: master
