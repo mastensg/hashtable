@@ -27,7 +27,7 @@
 #define BUCKETS 100
 
 // TODO(mastensg): togglable debug output
-#define fprintf(...) 0
+#define fprintf(...) (void)0
 
 struct item {
   uint64_t key;
