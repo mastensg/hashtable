@@ -2,126 +2,113 @@ dist: trusty
 sudo: required
 matrix:
   include:
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-4.9
-      env:
-         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc-5
-      env:
-         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc-6
-      env:
-         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc-7
-      env:
-         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.6
-          packages:
-            - clang-3.6
-      env:
-        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.7
-          packages:
-            - clang-3.7
-      env:
-        - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.8
-          packages:
-            - clang-3.8
-      env:
-        - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty-3.9
-          packages:
-            - clang-3.9
-      env:
-        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty-4.0
-          packages:
-            - clang-4.0
-      env:
-        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
-
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-4.9
+    env:
+    - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - gcc-5
+    env:
+    - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - gcc-6
+    env:
+    - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - gcc-7
+    env:
+    - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-precise-3.6
+        packages:
+        - clang-3.6
+    env:
+    - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-precise-3.7
+        packages:
+        - clang-3.7
+    env:
+    - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-precise-3.8
+        packages:
+        - clang-3.8
+    env:
+    - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-trusty-3.9
+        packages:
+        - clang-3.9
+    env:
+    - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-trusty-4.0
+        packages:
+        - clang-4.0
+    env:
+    - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
 env:
   global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
-   - secure: "RHM9vZKLwrpt5Hfo3Sa1unylnd6Zn1JBX3UfBLBp2YUug3A+V99pL8/wnwRn2AHGPTMs+WVcrctuoYX5OLb6DC/w40lR9/B1nd3tIwMnDjRD2vS5SiDgXTjXglzgXbwFEf9d4S0EFk35fleTb6YUA3TyfdwZfxBoIftQPja8lAPlyn4+Fd86FXy75U38C7vtfS4Nn9Otq8we0VXQusqEmuy9Kfqcs/T7wLhV4hfXHyoID7u5DnmG9Ml6bLtE+qHVtTmstKxCn+tKfepZiUEotWxy6jb9cikKsF1l1Gq1JIk4zRNvHTBQUGaEVPp6mpxQoW68B9noggzlXsFvZuCof7P9Xxtks6xYRE+lNgCJAZpuIrRuGanTOAHrDHeGp9jMjyRpwVipMSeo4V64VIjvMOE6wlz0MXWkHiEGHace3HRUqVAdkX8xkHj3Ts8P46WprblxmocmQRwOOlTGOnn3IhyUQVOucUGe6a2diZRgDph7t5h6jzMvmOI13fl6MUeC8LewEoSHtW3FmVWopt3jF8XfdL2idz9GKeuVmFTvMcXOf3TPs4uQAUb5S84i32cmkwFKW8DuYb2f1u6ae8ldLKuqguiHnCpnx8Oug3Ax81WQtASU9SQJ7mjBv3/aVL6vaiNaeTdr6xdYKOCwSwvpNxvbIaKd333oIFa/9IVdCtE="
-
+    secure: V8hiDYxMyj8B821INKz5bELYgXg1lJHXWf4n+NVQHPvWS88Tgip43uElSjsIj1LDWKc9MaYgDaGM1wVnkRi5d6NO/nUPZVzobac5+fFWv3DEcvmWBEHbsT89GHhX5Y6WQc69P2JuJbJQW4nEzCbS2I8sm/l4XmH9PjxC/aa4t2qE6Ec/eXUqH8WNI3Yept1Pbj7hFmzJQH5bJOfYOehGMKUj3e8k61+BQ0KVD/YmA0/+rOQNMTpx6Iua2llyWU0rpfkWlYMPNPqQiHGcehzoVzo4nN9F86vSCbfXCJhE08pKXVn++f4TA6usBo7zdFDmZekADl/Dtvr+NXj/JvPXLKK95uOc5mp2BRQsDmjUchGQmG/4W5U9kbTEzxUsG2h4SfnmCkxRM/GQs92t3rNZ4axStiRFHaJBEdH6Baf8004X9bKQRldBdJAkDsoF4EAoqFelo58EXrINR8JHq4yFOBxwG4RX9ZptorM963LIUPAlmKkHRXYq8XDssRDddsAkQNYNr/PkT9Mr5G2sBsNLA57evySBsGLivOYmzVEYoGXHsx8prgTkS/cNdzU2hca0IGY+rt90x1l3m1UvEqNF1GCbGX4E2R7V4N/fxnZ56/04w7bmspUZuT3nFuVnaEtVZqLuKM2d+4ZUnR2V552ITWcqMfmvA90k+dv+SpmR4B4=
 before_install:
-  - eval "${MATRIX_EVAL}"
-  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-
+- eval "${MATRIX_EVAL}"
+- echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN
+  CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 language: python
 python:
-  - "3.4"
-  - "3.5"
-  - "3.6"
+- '3.4'
+- '3.5'
+- '3.6'
 compiler:
-  - clang
-  - gcc
+- clang
+- gcc
 script:
-  - export CC CXX
-  - ./build.sh
-  - ./check.sh
-
+- export CC CXX
+- "./build.sh"
+- "./check.sh"
 addons:
   coverity_scan:
     project:
-      name: "mastensg/hashtable"
+      name: mastensg/hashtable
       description: "<Your project description here>"
     notification_email: mastensg@mastensg.net
     build_command: "./build.sh"
