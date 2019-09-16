@@ -31,9 +31,8 @@ key_value_pairs = hs.tuples(keys, values)
 key_value_pair_lists = hs.lists(elements=key_value_pairs, min_size=0)
 
 
+@hypothesis.settings(max_examples=10000, verbosity=hypothesis.Verbosity.verbose)
 @hypothesis.given(key_value_pair_lists)
-@hypothesis.settings(max_examples=10000)
-@hypothesis.settings(verbosity=hypothesis.Verbosity.verbose)
 def test_insert_then_find(l):
     h = hashtable.Hashtable(ht_lib)
     d = dict()
